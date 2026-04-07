@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
-    public class TransacaoRepository
+using System.Data;
+public class TransacaoRepository
 {
     private Conexao conexao = new Conexao();
     public void Adicionar(Transacao t)
@@ -16,6 +17,20 @@
             cmd.Parameters.AddWithValue("@c", t.CategoriaId);
 
             cmd.ExecuteNonQuery();
+        }
+    }
+    public DataTable Listar()
+    {
+        using (var conn = conexao.ObterConexao())
+        {
+            conn.Open();
+            string query = "SELECT descricao, valor, tipo, data FROM transacoes";
+
+            var cmd = new MySqlCommand(query, conn);
+            var adapter = new MySqlDataAdapter(cmd);
+            DataTable tabela = new DataTable();
+            adapter.Fill(tabela);
+            return tabela;
         }
     }
 } 

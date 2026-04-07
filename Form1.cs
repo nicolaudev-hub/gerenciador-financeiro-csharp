@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,18 @@ namespace gerenciador_financeiro_csharp
 {
     public partial class Form1 : Form
     {
+        private TransacaoRepository repo = new TransacaoRepository();
         public Form1()
         {
             InitializeComponent();
         }
+        private void CarregarDados()
+        {
+            dgvTransacoes.DataSource = repo.Listar();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            CarregarDados();
+        }
     }
-}
+} 
