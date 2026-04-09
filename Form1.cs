@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
@@ -25,7 +26,13 @@ namespace gerenciador_financeiro_csharp
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            cmbTipo.Items.Clear();
+            cmbTipo.Items.Add("Receita");
+            cmbTipo.Items.Add("Despesa");
+            cmbTipo.SelectedIndex = 0;
+
             CarregarDados();
+            AtualizarSaldo();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -59,6 +66,7 @@ namespace gerenciador_financeiro_csharp
                 };
                 repo.Adicionar(t);
                 CarregarDados();
+                AtualizarSaldo();
                 MessageBox.Show("Salvo com sucessao!");
             }
                     catch(Exception ex)
@@ -78,14 +86,42 @@ namespace gerenciador_financeiro_csharp
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            cmbTipo.Items.Add("Entrada");
-            cmbTipo.Items.Add("Saída");
+            cmbTipo.Items.Clear();            
+            cmbTipo.Items.Add("Receita");
+            cmbTipo.Items.Add("Despesa");
             cmbTipo.SelectedIndex = 0;
             CarregarDados();
-
+            AtualizarSaldo();
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+        }
+            private void AtualizarSaldo()
+            {
+               decimal total = 0;
+
+               DataTable tabela = repo.Listar();
+
+               foreach (DataRow row in tabela.Rows)
+               {
+                 if (row["valor"] != DBNull.Value && row["tipo"] != DBNull.Value)
+                 {
+                    decimal valor = Convert.ToDecimal(row["valor"]);
+                    string tipo = row["tipo"].ToString();
+
+                    if (tipo == "Receita")
+                        total += valor;
+                    else if (tipo == "Despesa")
+                        total -= valor;
+                 }
+               }
+
+              lblSaldo.Text = "Saldo: " + total.ToString("C2");
+
+              lblSaldo.ForeColor = total >= 0 ? Color.Green : Color.Red;
+            }
+        private void lblSaldo_Click(object sender, EventArgs e)
         {
 
         }

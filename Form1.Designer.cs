@@ -36,6 +36,7 @@
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.dgvTransacoes = new System.Windows.Forms.DataGridView();
             this.btnAdicionar = new System.Windows.Forms.Button();
+            this.lblSaldo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransacoes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,11 +115,22 @@
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
+            // lblSaldo
+            // 
+            this.lblSaldo.AutoSize = true;
+            this.lblSaldo.Location = new System.Drawing.Point(406, 38);
+            this.lblSaldo.Name = "lblSaldo";
+            this.lblSaldo.Size = new System.Drawing.Size(61, 13);
+            this.lblSaldo.TabIndex = 7;
+            this.lblSaldo.Text = "Saldo: 0,00";
+            this.lblSaldo.Click += new System.EventHandler(this.lblSaldo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblSaldo);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.dgvTransacoes);
             this.Controls.Add(this.cmbTipo);
@@ -146,6 +158,7 @@
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.DataGridView dgvTransacoes;
         private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.Label lblSaldo;
     }
 }
 
