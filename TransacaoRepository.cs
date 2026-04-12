@@ -19,12 +19,23 @@ public class TransacaoRepository
             cmd.ExecuteNonQuery();
         }
     }
+    public void Deletar(int id)
+    {
+        using (var conn = conexao.ObterConexao())
+        {
+            conn.Open();
+            string query = "DELETE FROM transacoes WHERE id = @id";
+            var cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+        }
+    }
     public DataTable Listar()
     {
         using (var conn = conexao.ObterConexao())
         {
             conn.Open();
-            string query = "SELECT descricao, valor, tipo, data FROM transacoes";
+            string query = "SELECT id, descricao, valor, tipo, data FROM transacoes";
 
             var cmd = new MySqlCommand(query, conn);
             var adapter = new MySqlDataAdapter(cmd);
@@ -33,4 +44,4 @@ public class TransacaoRepository
             return tabela;
         }
     }
-} 
+}
