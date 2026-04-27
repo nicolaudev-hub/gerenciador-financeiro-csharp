@@ -30,7 +30,10 @@ namespace gerenciador_financeiro_csharp
             cmbTipo.Items.Add("Receita");
             cmbTipo.Items.Add("Despesa");
             cmbTipo.SelectedIndex = 0;
-
+            var categorias = repo.ListarCategorias();
+            cmbCategoria.DataSource = categorias;
+            cmbCategoria.DisplayMember = "nome";
+            cmbCategoria.ValueMember = "id";
             CarregarDados();
             AtualizarSaldo();
         }
@@ -90,6 +93,10 @@ namespace gerenciador_financeiro_csharp
             cmbTipo.Items.Add("Receita");
             cmbTipo.Items.Add("Despesa");
             cmbTipo.SelectedIndex = 0;
+            var categorias = repo.ListarCategorias();
+            cmbCategoria.DataSource = categorias;
+            cmbCategoria.DisplayMember = "nome";
+            cmbCategoria.ValueMember = "id";
             CarregarDados();
             AtualizarSaldo();
         }
@@ -145,9 +152,13 @@ namespace gerenciador_financeiro_csharp
                 repo.Deletar(id);
                 CarregarDados();
                 AtualizarSaldo();
-                MessageBox.Show("Excluido");
+                MessageBox.Show("Excluido");  
             }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
+    }
     }
 

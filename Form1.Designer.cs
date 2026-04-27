@@ -38,6 +38,7 @@
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.lblSaldo = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.cmbCategoria = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransacoes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,11 +139,21 @@
             this.btnExcluir.UseVisualStyleBackColor = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // cmbCategoria
+            // 
+            this.cmbCategoria.FormattingEnabled = true;
+            this.cmbCategoria.Location = new System.Drawing.Point(386, 114);
+            this.cmbCategoria.Name = "cmbCategoria";
+            this.cmbCategoria.Size = new System.Drawing.Size(121, 21);
+            this.cmbCategoria.TabIndex = 9;
+            this.cmbCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cmbCategoria);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.lblSaldo);
             this.Controls.Add(this.btnAdicionar);
@@ -174,6 +185,7 @@
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.Label lblSaldo;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.ComboBox cmbCategoria;
     }
 }
 

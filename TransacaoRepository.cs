@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using System.Data;
+using System.Windows.Forms;
 public class TransacaoRepository
 {
     private Conexao conexao = new Conexao();
@@ -37,6 +38,20 @@ public class TransacaoRepository
             conn.Open();
             string query = "SELECT id, descricao, valor, tipo, data FROM transacoes";
 
+            var cmd = new MySqlCommand(query, conn);
+            var adapter = new MySqlDataAdapter(cmd);
+            DataTable tabela = new DataTable();
+            adapter.Fill(tabela);
+            return tabela;
+        }
+    }
+
+    public DataTable ListarCategorias()
+    {
+        using (var conn = conexao.ObterConexao())
+        {
+            conn.Open();
+            string query = "SELECT id, nome FROM `categorias`";
             var cmd = new MySqlCommand(query, conn);
             var adapter = new MySqlDataAdapter(cmd);
             DataTable tabela = new DataTable();
