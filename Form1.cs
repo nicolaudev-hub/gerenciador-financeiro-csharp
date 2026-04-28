@@ -65,7 +65,8 @@ namespace gerenciador_financeiro_csharp
                     Descricao = textBox1.Text,
                     Valor = valor,
                     Tipo = cmbTipo.Text,
-                    Data = DateTime.Now
+                    Data = DateTime.Now,
+                    CategoriaId = Convert.ToInt32(cmbCategoria.SelectedValue)
                 };
                 repo.Adicionar(t);
                 CarregarDados();

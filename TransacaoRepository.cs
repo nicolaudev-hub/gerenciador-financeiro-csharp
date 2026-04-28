@@ -36,14 +36,13 @@ public class TransacaoRepository
         using (var conn = conexao.ObterConexao())
         {
             conn.Open();
-            string query = "SELECT id, descricao, valor, tipo, data FROM transacoes";
-
+            string query = "SELECT t.id, t.descricao, t.valor, t.tipo, c.nome AS categoria FROM transacoes t LEFT JOIN categorias c ON t.categoria_id = c.id";
             var cmd = new MySqlCommand(query, conn);
             var adapter = new MySqlDataAdapter(cmd);
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
             return tabela;
-        }
+        } 
     }
 
     public DataTable ListarCategorias()
@@ -51,7 +50,7 @@ public class TransacaoRepository
         using (var conn = conexao.ObterConexao())
         {
             conn.Open();
-            string query = "SELECT id, nome FROM `categorias`";
+            string query = "SELECT id, nome FROM categorias";
             var cmd = new MySqlCommand(query, conn);
             var adapter = new MySqlDataAdapter(cmd);
             DataTable tabela = new DataTable();
